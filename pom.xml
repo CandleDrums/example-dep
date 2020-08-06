@@ -12,7 +12,36 @@
 	<packaging>pom</packaging>
 	<name>example-dep</name>
 	<modules>
-		<module>example-dep-biz</module>
 		<module>example-dep-dal</module>
+		<module>example-dep-biz</module>
 	</modules>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.candledrums.base</groupId>
+				<artifactId>base-biz</artifactId>
+				<version>${base.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.candledrums.base</groupId>
+				<artifactId>base-dal</artifactId>
+				<version>${base.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.candledrums.api</groupId>
+				<artifactId>example-api</artifactId>
+				<version>${api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.candledrums.example</groupId>
+				<artifactId>example-dep-dal</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.candledrums.example</groupId>
+				<artifactId>example-dep-biz</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
