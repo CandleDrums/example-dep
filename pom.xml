@@ -8,12 +8,10 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.candledrums.example</groupId>
-	<artifactId>example-dep-mybatisplus</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>example-dep</artifactId>
 	<packaging>pom</packaging>
-	<name>example-dep-mybatisplus</name>
+	<name>example-dep</name>
 	<modules>
-		
 		<module>example-dep-biz</module>
 		<module>example-dep-dal</module>
 	</modules>
