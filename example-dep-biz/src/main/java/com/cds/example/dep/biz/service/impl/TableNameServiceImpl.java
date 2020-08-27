@@ -128,20 +128,21 @@ public class TableNameServiceImpl implements TableNameService {
     public boolean contains(TableNameVO value) {
         TableNameDO doValue = new TableNameDO();
         BeanUtils.copyProperties(value, doValue);
-        return tableDAO.contains(doValue);
+        List<TableNameVO> list = this.queryAll(value);
+        if (CheckUtils.isNotEmpty(list) && list.size() == 1) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public TableNameVO detail(TableNameVO value) {
-        TableNameDO doValue = new TableNameDO();
-        BeanUtils.copyProperties(value, doValue);
-        TableNameDO detail = tableDAO.detail(doValue);
-        if (CheckUtils.isEmpty(detail)) {
+        List<TableNameVO> list = this.queryAll(value);
+
+        if (CheckUtils.isEmpty(list)) {
             return null;
         }
-        TableNameVO detailValue = new TableNameVO();
-        BeanUtils.copyProperties(detail, detailValue);
-        return detailValue;
+        return list.get(0);
     }
 
     @Override

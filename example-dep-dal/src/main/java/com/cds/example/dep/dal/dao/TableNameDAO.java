@@ -23,8 +23,6 @@ public interface TableNameDAO extends MyBatisBaseDAO<TableNameDO, Integer, Table
 
     boolean contains(TableNameDO value);
 
-    TableNameDO detail(TableNameDO value);
-
     List<TableNameDO> queryPagingList(TableNameDO params, int startIndex, int pageSize);
 
     int queryPagingCount(TableNameDO params);
