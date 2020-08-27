@@ -7,6 +7,8 @@
  */
 package com.cds.example.dep.dal.dao;
 
+import java.util.List;
+
 import com.cds.base.dal.dao.MyBatisBaseDAO;
 import com.cds.example.dep.dal.model.TableNameDO;
 import com.cds.example.dep.dal.model.TableNameDOExample;
@@ -19,4 +21,11 @@ import com.cds.example.dep.dal.model.TableNameDOExample;
  */
 public interface TableNameDAO extends MyBatisBaseDAO<TableNameDO, Integer, TableNameDOExample> {
 
+    boolean contains(TableNameDO value);
+
+    TableNameDO detail(TableNameDO value);
+
+    List<TableNameDO> queryPagingList(TableNameDO params, int startIndex, int pageSize);
+
+    int queryPagingCount(TableNameDO params);
 }
