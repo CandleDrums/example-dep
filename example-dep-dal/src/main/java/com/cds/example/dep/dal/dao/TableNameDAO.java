@@ -21,8 +21,6 @@ import com.cds.example.dep.dal.model.TableNameDOExample;
  */
 public interface TableNameDAO extends MyBatisBaseDAO<TableNameDO, Integer, TableNameDOExample> {
 
-    boolean contains(TableNameDO value);
-
     List<TableNameDO> queryPagingList(TableNameDO params, int startIndex, int pageSize);
 
     int queryPagingCount(TableNameDO params);
