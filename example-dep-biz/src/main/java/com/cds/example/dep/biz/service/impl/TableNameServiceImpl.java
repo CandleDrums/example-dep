@@ -7,7 +7,9 @@
  */
 package com.cds.example.dep.biz.service.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,15 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cds.api.example.model.TableNameVO;
-import com.cds.base.common.exception.BusinessException;
+import com.cds.base.biz.service.impl.GeneralServiceImpl;
+import com.cds.base.dal.dao.BaseDAO;
 import com.cds.base.util.bean.BeanUtils;
 import com.cds.base.util.bean.CheckUtils;
 import com.cds.example.dep.biz.service.TableNameService;
 import com.cds.example.dep.dal.dao.TableNameDAO;
 import com.cds.example.dep.dal.model.TableNameDO;
 import com.cds.example.dep.dal.model.TableNameDOExample;
+import com.cds.example.dep.dal.model.TableNameDOExample.Criteria;
 
 /**
  * @Description [name]Service实现
@@ -35,37 +39,11 @@ import com.cds.example.dep.dal.model.TableNameDOExample;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT,
     timeout = TransactionDefinition.TIMEOUT_DEFAULT)
-public class TableNameServiceImpl implements TableNameService {
+public class TableNameServiceImpl extends GeneralServiceImpl<TableNameVO, TableNameDO, TableNameDOExample>
+    implements TableNameService {
 
     @Autowired
     private TableNameDAO tableDAO;
-
-    @Override
-    public TableNameVO modify(TableNameVO value) {
-        TableNameDOExample example = new TableNameDOExample();
-        example.createCriteria().andNumEqualTo(value.getNum());
-        TableNameDO record = new TableNameDO();
-        BeanUtils.copyProperties(value, record);
-        int success = tableDAO.updateByExampleSelective(record, example);
-        if (success <= 0) {
-            return null;
-        }
-        return this.detail(value.getNum());
-    }
-
-    @Override
-    public TableNameVO detail(String num) {
-        TableNameDOExample example = new TableNameDOExample();
-        example.createCriteria().andNumEqualTo(num);
-        List<TableNameDO> resultList = tableDAO.selectByExample(example);
-        if (CheckUtils.isEmpty(resultList)) {
-            return null;
-        }
-        TableNameDO tableNameDO = resultList.get(0);
-        TableNameVO result = new TableNameVO();
-        BeanUtils.copyProperties(tableNameDO, result);
-        return result;
-    }
 
     @Override
     public List<TableNameVO> findList(List<String> numList) {
@@ -81,25 +59,19 @@ public class TableNameServiceImpl implements TableNameService {
     }
 
     @Override
-    public boolean delete(String num) {
+    public TableNameVO modify(TableNameVO value) {
         TableNameDOExample example = new TableNameDOExample();
-        example.createCriteria().andNumEqualTo(num);
-        return tableDAO.deleteByExample(example) > 0;
-    }
-
-    @Override
-    public int deleteAll(List<String> numList) {
-        TableNameDOExample example = new TableNameDOExample();
-        example.createCriteria().andNumIn(numList);
-        return tableDAO.deleteByExample(example);
-    }
-
-    @Override
-    public TableNameVO save(TableNameVO value) {
-
         TableNameDO record = new TableNameDO();
         BeanUtils.copyProperties(value, record);
-        int success = tableDAO.insertSelective(record);
+        Criteria criteria = example.createCriteria();
+        criteria.andNumEqualTo(value.getNum());
+        // OptimisticLockerInterceptor看看是否适用
+        if (value.getVersion() != null) {
+            criteria.andVersionEqualTo(value.getVersion());
+            record.setVersion(value.getVersion() + 1);
+            record.setUpdateDate(new Date());
+        }
+        int success = tableDAO.updateByExampleSelective(record, example);
         if (success <= 0) {
             return null;
         }
@@ -107,67 +79,32 @@ public class TableNameServiceImpl implements TableNameService {
     }
 
     @Override
-    public int saveAll(List<TableNameVO> valueList) {
-        if (CheckUtils.isEmpty(valueList)) {
-            return 0;
-        }
-        int count = 0;
-        for (TableNameVO value : valueList) {
-            TableNameDO record = new TableNameDO();
-            BeanUtils.copyProperties(value, record);
-            int success = tableDAO.insertSelective(record);
-            if (success <= 0) {
-                throw new BusinessException("保存失败");
-            }
-            count++;
-        }
-        return count;
+    public boolean delete(String num) {
+        TableNameDOExample example = new TableNameDOExample();
+        example.createCriteria().andNumEqualTo(num);
+        TableNameDO record = new TableNameDO();
+        record.setDeleted(true);
+        record.setUpdateDate(new Date());
+        return tableDAO.updateByExampleSelective(record, example) == 0;
     }
 
     @Override
-    public boolean contains(TableNameVO value) {
-        TableNameDO doValue = new TableNameDO();
-        BeanUtils.copyProperties(value, doValue);
-        List<TableNameVO> list = this.queryAll(value);
-        if (CheckUtils.isNotEmpty(list) && list.size() == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public TableNameVO detail(TableNameVO value) {
-        List<TableNameVO> list = this.queryAll(value);
-
-        if (CheckUtils.isEmpty(list)) {
+    public TableNameVO detail(String num) {
+        TableNameDOExample example = new TableNameDOExample();
+        example.createCriteria().andNumEqualTo(num);
+        List<TableNameDO> resultList = tableDAO.selectByExample(example);
+        if (CheckUtils.isEmpty(resultList) || resultList.size() == 0) {
             return null;
         }
-        return list.get(0);
+        TableNameDO tableNameDO = resultList.get(0);
+        TableNameVO result = new TableNameVO();
+        BeanUtils.copyProperties(tableNameDO, result);
+        return result;
     }
 
     @Override
-    public List<TableNameVO> queryAll(TableNameVO params) {
-        return this.queryPagingList(params, 0, Integer.MAX_VALUE);
-    }
-
-    @Override
-    public List<TableNameVO> queryPagingList(TableNameVO params, int startIndex, int pageSize) {
-        TableNameDO doParams = new TableNameDO();
-        BeanUtils.copyProperties(params, doParams);
-        List<TableNameDO> list = tableDAO.queryPagingList(doParams, startIndex, pageSize);
-        if (CheckUtils.isEmpty(list)) {
-            return null;
-        }
-        List<TableNameVO> resultList = new ArrayList<TableNameVO>();
-        BeanUtils.copyListProperties(list, resultList, TableNameVO.class);
-        return resultList;
-    }
-
-    @Override
-    public int queryPagingCount(TableNameVO params) {
-        TableNameDO doParams = new TableNameDO();
-        BeanUtils.copyProperties(params, doParams);
-        return tableDAO.queryPagingCount(doParams);
+    protected BaseDAO<TableNameDO, Serializable, TableNameDOExample> getDAO() {
+        return tableDAO;
     }
 
 }

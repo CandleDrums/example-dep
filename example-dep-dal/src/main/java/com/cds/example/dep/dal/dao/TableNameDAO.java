@@ -7,9 +7,9 @@
  */
 package com.cds.example.dep.dal.dao;
 
-import java.util.List;
+import java.io.Serializable;
 
-import com.cds.base.dal.dao.MyBatisBaseDAO;
+import com.cds.base.dal.dao.BaseDAO;
 import com.cds.example.dep.dal.model.TableNameDO;
 import com.cds.example.dep.dal.model.TableNameDOExample;
 
@@ -19,9 +19,6 @@ import com.cds.example.dep.dal.model.TableNameDOExample;
  * @author [author]
  * @Date [date]
  */
-public interface TableNameDAO extends MyBatisBaseDAO<TableNameDO, Integer, TableNameDOExample> {
+public interface TableNameDAO extends BaseDAO<TableNameDO, Serializable, TableNameDOExample> {
 
-    List<TableNameDO> queryPagingList(TableNameDO params, int startIndex, int pageSize);
-
-    int queryPagingCount(TableNameDO params);
 }
