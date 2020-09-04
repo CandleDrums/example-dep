@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cds.api.example.model.TableNameVO;
 import com.cds.base.biz.service.impl.GeneralServiceImpl;
 import com.cds.base.dal.dao.BaseDAO;
+import com.cds.base.exception.server.DAOException;
 import com.cds.base.util.bean.BeanUtils;
 import com.cds.base.util.bean.CheckUtils;
 import com.cds.example.dep.biz.service.TableNameService;
@@ -46,6 +47,7 @@ public class TableNameServiceImpl extends GeneralServiceImpl<TableNameVO, TableN
     private TableNameDAO tableDAO;
 
     @Override
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public List<TableNameVO> findList(List<String> numList) {
         TableNameDOExample example = new TableNameDOExample();
         example.createCriteria().andNumIn(numList);
@@ -59,6 +61,8 @@ public class TableNameServiceImpl extends GeneralServiceImpl<TableNameVO, TableN
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class,
+        noRollbackFor = RuntimeException.class)
     public TableNameVO modify(TableNameVO value) {
         TableNameDOExample example = new TableNameDOExample();
         TableNameDO record = new TableNameDO();
@@ -79,6 +83,8 @@ public class TableNameServiceImpl extends GeneralServiceImpl<TableNameVO, TableN
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class, DAOException.class},
+        noRollbackFor = RuntimeException.class)
     public boolean delete(String num) {
         TableNameDOExample example = new TableNameDOExample();
         example.createCriteria().andNumEqualTo(num);
@@ -89,6 +95,7 @@ public class TableNameServiceImpl extends GeneralServiceImpl<TableNameVO, TableN
     }
 
     @Override
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public TableNameVO detail(String num) {
         TableNameDOExample example = new TableNameDOExample();
         example.createCriteria().andNumEqualTo(num);
