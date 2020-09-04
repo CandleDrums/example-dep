@@ -8,7 +8,6 @@
 package com.cds.example.dep.biz.service.impl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,20 +44,6 @@ public class TableNameServiceImpl extends GeneralServiceImpl<TableNameVO, TableN
 
     @Autowired
     private TableNameDAO tableDAO;
-
-    @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    public List<TableNameVO> findList(List<String> numList) {
-        TableNameDOExample example = new TableNameDOExample();
-        example.createCriteria().andNumIn(numList);
-        List<TableNameDO> list = tableDAO.selectByExample(example);
-        if (CheckUtils.isEmpty(list)) {
-            return null;
-        }
-        List<TableNameVO> resultList = new ArrayList<TableNameVO>();
-        BeanUtils.copyListProperties(list, resultList, TableNameVO.class);
-        return resultList;
-    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class,
