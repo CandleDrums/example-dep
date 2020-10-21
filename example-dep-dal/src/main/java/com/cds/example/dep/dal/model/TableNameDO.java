@@ -24,4 +24,6 @@ public class TableNameDO extends GeneralModel {
 
     private static final long serialVersionUID = 1L;
 
+    private String status;
+    private String type;
 }
