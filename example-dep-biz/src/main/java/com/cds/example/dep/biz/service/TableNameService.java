@@ -8,7 +8,7 @@
 package com.cds.example.dep.biz.service;
 
 import com.cds.api.example.model.TableNameVO;
-import com.cds.base.biz.service.GeneralService;
+import com.cds.base.biz.service.BaseService;
 
 /**
  * @Description [name]Service
@@ -16,6 +16,6 @@ import com.cds.base.biz.service.GeneralService;
  * @author [author]
  * @Date [date]
  */
-public interface TableNameService extends GeneralService<TableNameVO> {
+public interface TableNameService extends BaseService<TableNameVO> {
 
 }

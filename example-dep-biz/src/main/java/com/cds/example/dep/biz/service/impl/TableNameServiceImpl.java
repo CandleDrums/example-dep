@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cds.api.example.model.TableNameVO;
-import com.cds.base.biz.service.impl.GeneralServiceImpl;
+import com.cds.base.biz.service.impl.BaseServiceImpl;
 import com.cds.base.dal.dao.BaseDAO;
 import com.cds.example.dep.biz.service.TableNameService;
 import com.cds.example.dep.dal.dao.TableNameDAO;
@@ -33,7 +33,7 @@ import com.cds.example.dep.dal.model.TableNameDOExample;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT,
     timeout = TransactionDefinition.TIMEOUT_DEFAULT)
-public class TableNameServiceImpl extends GeneralServiceImpl<TableNameVO, TableNameDO, TableNameDOExample>
+public class TableNameServiceImpl extends BaseServiceImpl<TableNameVO, TableNameDO, TableNameDOExample>
     implements TableNameService {
 
     @Autowired
