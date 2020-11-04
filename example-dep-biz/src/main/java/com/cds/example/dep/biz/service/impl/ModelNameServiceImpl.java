@@ -1,7 +1,7 @@
 /**
  * @Project example-dep-biz
  * @package com.cds.example.dep.biz.service.impl
- * @Class TableNameServiceImpl.java
+ * @Class ModelNameServiceImpl.java
  * @Date [date]
  * @Copyright [copyright]
  */
@@ -16,13 +16,13 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cds.api.example.model.TableNameVO;
+import com.cds.api.example.model.ModelNameVO;
 import com.cds.base.biz.service.impl.BaseServiceImpl;
 import com.cds.base.dal.dao.BaseDAO;
-import com.cds.example.dep.biz.service.TableNameService;
-import com.cds.example.dep.dal.dao.TableNameDAO;
-import com.cds.example.dep.dal.model.TableNameDO;
-import com.cds.example.dep.dal.model.TableNameDOExample;
+import com.cds.example.dep.biz.service.ModelNameService;
+import com.cds.example.dep.dal.dao.ModelNameDAO;
+import com.cds.example.dep.dal.model.ModelNameDO;
+import com.cds.example.dep.dal.model.ModelNameDOExample;
 
 /**
  * @Description [name]Service实现
@@ -33,14 +33,14 @@ import com.cds.example.dep.dal.model.TableNameDOExample;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT,
     timeout = TransactionDefinition.TIMEOUT_DEFAULT)
-public class TableNameServiceImpl extends BaseServiceImpl<TableNameVO, TableNameDO, TableNameDOExample>
-    implements TableNameService {
+public class ModelNameServiceImpl extends BaseServiceImpl<ModelNameVO, ModelNameDO, ModelNameDOExample>
+    implements ModelNameService {
 
     @Autowired
-    private TableNameDAO tableDAO;
+    private ModelNameDAO tableDAO;
 
     @Override
-    protected BaseDAO<TableNameDO, Serializable, TableNameDOExample> getDAO() {
+    protected BaseDAO<ModelNameDO, Serializable, ModelNameDOExample> getDAO() {
         return tableDAO;
     }
 

@@ -1,13 +1,13 @@
 /**
  * @Project example-dep-biz
  * @package com.cds.example.dep.biz.service
- * @Class TableNameService.java
+ * @Class ModelNameService.java
  * @Date [date]
  * @Copyright [copyright]
  */
 package com.cds.example.dep.biz.service;
 
-import com.cds.api.example.model.TableNameVO;
+import com.cds.api.example.model.ModelNameVO;
 import com.cds.base.biz.service.BaseService;
 
 /**
@@ -16,6 +16,6 @@ import com.cds.base.biz.service.BaseService;
  * @author [author]
  * @Date [date]
  */
-public interface TableNameService extends BaseService<TableNameVO> {
+public interface ModelNameService extends BaseService<ModelNameVO> {
 
 }

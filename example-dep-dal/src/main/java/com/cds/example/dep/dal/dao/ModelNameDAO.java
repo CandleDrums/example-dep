@@ -1,7 +1,7 @@
 /**
  * @Project example-dep-dal
  * @package com.cds.example.dep.dal.dao
- * @Class TableNameDAO.java
+ * @Class ModelNameDAO.java
  * @Date [date]
  * @Copyright [copyright]
  */
@@ -10,8 +10,8 @@ package com.cds.example.dep.dal.dao;
 import java.io.Serializable;
 
 import com.cds.base.dal.dao.BaseDAO;
-import com.cds.example.dep.dal.model.TableNameDO;
-import com.cds.example.dep.dal.model.TableNameDOExample;
+import com.cds.example.dep.dal.model.ModelNameDO;
+import com.cds.example.dep.dal.model.ModelNameDOExample;
 
 /**
  * @Description [name]DAO
@@ -19,6 +19,6 @@ import com.cds.example.dep.dal.model.TableNameDOExample;
  * @author [author]
  * @Date [date]
  */
-public interface TableNameDAO extends BaseDAO<TableNameDO, Serializable, TableNameDOExample> {
+public interface ModelNameDAO extends BaseDAO<ModelNameDO, Serializable, ModelNameDOExample> {
 
 }

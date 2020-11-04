@@ -1,7 +1,7 @@
 /**
  * @Project example-dep-dal
  * @package com.cds.example.dep.dal.model
- * @Class TableNameDO.java
+ * @Class ModelNameDO.java
  * @Date [date]
  * @Copyright [copyright]
  */
@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class TableNameDO extends GeneralModel {
+public class ModelNameDO extends GeneralModel {
 
     private static final long serialVersionUID = 1L;
 

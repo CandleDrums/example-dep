@@ -10,7 +10,7 @@ import java.util.List;
  * @author liming
  * @Date Aug 6, 2020 5:41:59 PM
  */
-public class TableNameDOExample {
+public class ModelNameDOExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -21,7 +21,7 @@ public class TableNameDOExample {
 
     private Long offset;
 
-    public TableNameDOExample() {
+    public ModelNameDOExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cds.example.dep.dal.dao.TableNameDAO">
-  <resultMap id="BaseResultMap" type="com.cds.example.dep.dal.model.TableNameDO">
+<mapper namespace="com.cds.example.dep.dal.dao.ModelNameDAO">
+  <resultMap id="BaseResultMap" type="com.cds.example.dep.dal.model.ModelNameDO">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="num" jdbcType="VARCHAR" property="num" />
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List">
     id, version, num, `status`, `type`, create_date, update_date, deleted
   </sql>
-  <select id="selectByExample" parameterType="com.cds.example.dep.dal.model.TableNameDOExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.cds.example.dep.dal.model.ModelNameDOExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -104,13 +104,13 @@
     delete from table_name
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.cds.example.dep.dal.model.TableNameDOExample">
+  <delete id="deleteByExample" parameterType="com.cds.example.dep.dal.model.ModelNameDOExample">
     delete from table_name
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cds.example.dep.dal.model.TableNameDO">
+  <insert id="insert" parameterType="com.cds.example.dep.dal.model.ModelNameDO">
     insert into table_name (id, version, num, 
       `status`, `type`, create_date, 
       update_date, deleted)
@@ -118,7 +118,7 @@
       #{status,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
       #{updateDate,jdbcType=TIMESTAMP}, #{deleted,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.cds.example.dep.dal.model.TableNameDO">
+  <insert id="insertSelective" parameterType="com.cds.example.dep.dal.model.ModelNameDO">
     insert into table_name
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -173,7 +173,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cds.example.dep.dal.model.TableNameDOExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.cds.example.dep.dal.model.ModelNameDOExample" resultType="java.lang.Long">
     select count(*) from table_name
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -225,7 +225,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cds.example.dep.dal.model.TableNameDO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cds.example.dep.dal.model.ModelNameDO">
     update table_name
     <set>
       <if test="version != null">
@@ -252,7 +252,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cds.example.dep.dal.model.TableNameDO">
+  <update id="updateByPrimaryKey" parameterType="com.cds.example.dep.dal.model.ModelNameDO">
     update table_name
     set version = #{version,jdbcType=INTEGER},
       num = #{num,jdbcType=VARCHAR},
