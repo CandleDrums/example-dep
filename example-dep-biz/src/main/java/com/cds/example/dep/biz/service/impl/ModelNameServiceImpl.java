@@ -7,8 +7,6 @@
  */
 package com.cds.example.dep.biz.service.impl;
 
-import java.io.Serializable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
@@ -22,7 +20,6 @@ import com.cds.base.dal.dao.BaseDAO;
 import com.cds.example.dep.biz.service.ModelNameService;
 import com.cds.example.dep.dal.dao.ModelNameDAO;
 import com.cds.example.dep.dal.model.ModelNameDO;
-import com.cds.example.dep.dal.model.ModelNameDOExample;
 
 /**
  * @Description [name]Service实现
@@ -33,14 +30,13 @@ import com.cds.example.dep.dal.model.ModelNameDOExample;
 @Service
 @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT,
     timeout = TransactionDefinition.TIMEOUT_DEFAULT)
-public class ModelNameServiceImpl extends BaseServiceImpl<ModelNameVO, ModelNameDO, ModelNameDOExample>
-    implements ModelNameService {
+public class ModelNameServiceImpl extends BaseServiceImpl<ModelNameVO, ModelNameDO> implements ModelNameService {
 
     @Autowired
     private ModelNameDAO tableDAO;
 
     @Override
-    protected BaseDAO<ModelNameDO, Serializable, ModelNameDOExample> getDAO() {
+    protected BaseDAO<ModelNameDO> getDAO() {
         return tableDAO;
     }
 

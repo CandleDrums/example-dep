@@ -7,6 +7,8 @@
  */
 package com.cds.example.dep.dal.model;
 
+import javax.persistence.Table;
+
 import com.cds.base.dal.model.GeneralModel;
 
 import lombok.Data;
@@ -20,6 +22,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "model_name")
 public class ModelNameDO extends GeneralModel {
 
     private static final long serialVersionUID = 1L;
