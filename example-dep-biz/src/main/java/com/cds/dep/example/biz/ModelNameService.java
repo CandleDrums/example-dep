@@ -1,11 +1,11 @@
 /**
  * @Project example-dep-biz
- * @package com.cds.example.dep.biz.service
+ * @package com.cds.dep.example.biz
  * @Class ModelNameService.java
  * @Date [date]
  * @Copyright [copyright]
  */
-package com.cds.example.dep.biz.service;
+package com.cds.dep.example.biz;
 
 import com.cds.api.example.model.ModelNameVO;
 import com.cds.base.biz.service.BaseService;

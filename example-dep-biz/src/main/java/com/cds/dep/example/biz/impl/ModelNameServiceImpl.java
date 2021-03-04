@@ -1,11 +1,11 @@
 /**
  * @Project example-dep-biz
- * @package com.cds.example.dep.biz.service.impl
+ * @package com.cds.dep.example.biz.impl
  * @Class ModelNameServiceImpl.java
  * @Date [date]
  * @Copyright [copyright]
  */
-package com.cds.example.dep.biz.service.impl;
+package com.cds.dep.example.biz.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cds.api.example.model.ModelNameVO;
 import com.cds.base.biz.service.impl.BaseServiceImpl;
 import com.cds.base.dal.dao.BaseDAO;
-import com.cds.example.dep.biz.service.ModelNameService;
-import com.cds.example.dep.dal.dao.ModelNameDAO;
-import com.cds.example.dep.dal.model.ModelNameDO;
+import com.cds.dep.example.biz.ModelNameService;
+import com.cds.dep.example.dal.dao.ModelNameDAO;
+import com.cds.dep.example.dal.model.ModelNameDO;
 
 /**
  * @Description [name]Service实现

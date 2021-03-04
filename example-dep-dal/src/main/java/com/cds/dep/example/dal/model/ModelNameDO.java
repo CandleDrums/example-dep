@@ -1,11 +1,11 @@
 /**
  * @Project example-dep-dal
- * @package com.cds.example.dep.dal.model
+ * @package com.cds.dep.example.dal.model
  * @Class ModelNameDO.java
  * @Date [date]
  * @Copyright [copyright]
  */
-package com.cds.example.dep.dal.model;
+package com.cds.dep.example.dal.model;
 
 import javax.persistence.Table;
 

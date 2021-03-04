@@ -1,14 +1,14 @@
 /**
  * @Project example-dep-dal
- * @package com.cds.example.dep.dal.dao
+ * @package com.cds.dep.example.dal.dao
  * @Class ModelNameDAO.java
  * @Date [date]
  * @Copyright [copyright]
  */
-package com.cds.example.dep.dal.dao;
+package com.cds.dep.example.dal.dao;
 
 import com.cds.base.dal.dao.BaseDAO;
-import com.cds.example.dep.dal.model.ModelNameDO;
+import com.cds.dep.example.dal.model.ModelNameDO;
 
 /**
  * @Description [name]DAO
